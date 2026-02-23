@@ -8,6 +8,8 @@ var emptyState = document.getElementById("emptyState");
 var allTabs = document.querySelectorAll("[data-tab]");
 
 var activeTab = "all";
+
+
 function getCards() {
   return document.querySelectorAll("#jobsList article");
 }
@@ -113,6 +115,8 @@ for (var t = 0; t < allTabs.length; t++) {
     showByTab(activeTab);
   };
 }
+
+
 function attachCardEvents() {
   var cards = getCards();
 
