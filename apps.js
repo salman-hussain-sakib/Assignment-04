@@ -113,3 +113,44 @@ for (var t = 0; t < allTabs.length; t++) {
     showByTab(activeTab);
   };
 }
+function attachCardEvents() {
+  var cards = getCards();
+
+  for (var i = 0; i < cards.length; i++) {
+    (function (card) {
+      var interviewBtn = card.querySelector('[data-action="interview"]');
+      var rejectedBtn = card.querySelector('[data-action="rejected"]');
+      var deleteBtn = card.querySelector('[data-action="delete"]');
+
+      interviewBtn.onclick = function () {
+        setStatus(card, "interview");
+        updateBadge(card);
+        updateCounts();
+        showByTab(activeTab);
+      };
+
+      rejectedBtn.onclick = function () {
+        setStatus(card, "rejected");
+        updateBadge(card);
+        updateCounts();
+        showByTab(activeTab);
+      };
+
+      deleteBtn.onclick = function () {
+        card.remove(); 
+        updateCounts();
+        showByTab(activeTab);
+      };
+    })(cards[i]);
+  }
+}
+
+
+var cardsAtStart = getCards();
+for (var i = 0; i < cardsAtStart.length; i++) {
+  updateBadge(cardsAtStart[i]);
+}
+
+attachCardEvents();
+updateCounts();
+showByTab(activeTab);
